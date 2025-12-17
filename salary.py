@@ -2,19 +2,21 @@ import json
 import csv
 import os
 
-data = {
+json_data = {
     "Имя": "Иван",
     "Возраст": 25,
     "Город": "Москва"
 }
 
-with open("salary.json", "w", encoding = "UTF-8") as file:
-    json.dump(data, file, ensure_ascii = False, indent = 4)
+with open("test_json.json", "w", encoding = "UTF-8") as file:
+    json.dump(json_data, file, ensure_ascii = False)
 
-with open("salary.json", "r", encoding = "UTF-8") as file:
+with open("test_json.json", "r", encoding= "UTF-8") as file:
     data = json.load(file)
 
-rows = [
+headers = ["Имя", "Возраст", "Город", "Должность", "Зарплата"]
+
+row = [
     data["Имя"],
     data["Возраст"],
     data["Город"],
@@ -22,12 +24,12 @@ rows = [
     50000
 ]
 
-headers = ["Имя", "Возраст", "Город", "Должность", "Зарплата"]
-
-with open("salary.csv", "a", encoding="UTF-8", newline="") as file:
-    writer = csv.writer(file)
-
-    if not os.path.exists("salary.csv"):
+if not os.path.exists("employees_with_salary.csv"):
+    with open("employees_with_salary.csv", "w", encoding = "UTF-8") as file:
+        writer = csv.writer(file)
         writer.writerow(headers)
-
-    writer.writerow(rows)
+        writer.writerow(row)
+else:
+    with open("employees_with_salary.csv", "a", encoding = "UTF-8") as file:
+        writer = csv.writer(file)
+        writer.writerow(row)

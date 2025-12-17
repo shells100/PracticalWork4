@@ -8,12 +8,12 @@ rows = [
     ["Иван", 29, "Москва", "Инженер"]
     ]
 
-with open("employees.csv", "w", encoding = "UTF-8", newline = "") as file:
+with open("csv_file.csv", "w", encoding = "UTF-8") as file:
     writer = csv.writer(file)
     writer.writerow(header)
     writer.writerows(rows)
 
-with open ("employees.csv", "r", encoding = "UTF-8", newline = "") as file_read:
+with open ("csv_file.csv", "r", encoding = "UTF-8") as file_read:
     reader = csv.reader(file_read)
     next(reader)
     

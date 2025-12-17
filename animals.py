@@ -7,13 +7,14 @@ rows = [
     ["Верблюд", "Пустыня"]
     ]
 
-with open("animals.csv", "w", encoding = "UTF-8", newline = "") as file:
+with open("animals.csv", "w", encoding = "UTF-8") as file:
     writer = csv.writer(file)
     writer.writerow(header)
     writer.writerows(rows)
 
-with open ("animals.csv", "r", encoding = "UTF-8", newline = "") as file_read:
+with open ("animals.csv", "r", encoding = "UTF-8") as file_read:
     reader = csv.reader(file_read)
+    
     for row in reader:
         if row[1] == "Лес":
             print(row[0])
